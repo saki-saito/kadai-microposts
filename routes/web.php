@@ -23,3 +23,14 @@ Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
+
+Route::group(['middleware' => ['auth']], function (){
+// Route::middleware(['auth'])->group(function (){
+    /* -------------------------------------------------------------- *
+     Route:resource
+     第一引数：任意の文字列、指定の機能のURI(https://ドメイン/〇〇)
+     第二引数：ルーティング先のコントローラー
+     第三引数：コントローラーのアクションの絞り込み
+     * -------------------------------------------------------------- */
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+});
