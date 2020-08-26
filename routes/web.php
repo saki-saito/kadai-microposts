@@ -24,6 +24,14 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 Route::group(['middleware' => ['auth']], function (){
 // Route::middleware(['auth'])->group(function (){
+    
+    Route::group(['prefix' => 'users/{id}'], function(){
+        Route::post('follow', 'UserFollowController@store')->name('user.follow');
+        Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow');
+        Route::get('followings', 'UsersController@followings')->name('users.followings');
+        Route::get('followers', 'UsersController@followers')->name('users.followers');
+    });
+    
     /* -------------------------------------------------------------- *
      Route:resource
      第一引数：任意の文字列、指定の機能のURI(https://ドメイン/〇〇)
