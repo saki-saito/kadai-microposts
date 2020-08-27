@@ -15,12 +15,37 @@
                         {{-- 投稿内容 --}}
                         <p class="mb-0">{!! nl2br(e($micropost->content)) !!}</p>
                     </div>
-                    <div>
+                    <div class="row">
+                        <div class="col-sm-1">
+                            {{-- お気に入りボタン --}}
+                            @if (Auth::user()->is_favorite($micropost->id))
+                                {{-- お気に入り削除ボタンのフォーム --}}
+                                {!! Form::open(['route' => ['favorites.unfavorite', $micropost->id], 'method' => 'delete']) !!}
+                                    {{-- ↓'Unfavorite' --}}
+                                    {{-- {!! Form::submit('Unfavorite', ['class' => 'btn btn-success btn-sm']) !!} --}}
+                                    {{-- ↓星アイコン --}}
+                                    {!! Form::button('<i class="fas fa-star"></i>', ['class' => 'btn btn-sm', 'type' => 'submit']) !!}
+                                {!! Form::close() !!}
+                            @else
+                                {{-- お気に入りボタンのフォーム --}}
+                                {!! Form::open(['route' => ['favorites.favorite', $micropost->id]]) !!}
+                                    {{-- ↓'Favorite' --}}
+                                    {{-- {!! Form::submit('Favorite', ['class' => 'btn btn-light btn-sm']) !!} --}}
+                                    {{-- ↓白抜き星アイコン --}}
+                                    {!! Form::button('<i class="far fa-star"></i>', ['class' => 'btn btn-sm', 'type' => 'submit']) !!}
+                                {!! Form::close() !!}
+                            @endif
+                        </div>
                         @if (Auth::id() == $micropost->user_id)
+                            <div class="col-sm-1">
                             {{-- 投稿削除ボタンのフォーム --}}
                             {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
-                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                {{-- ↓'Delete' --}}
+                                {{-- {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!} --}}
+                                {{-- ↓ゴミ箱アイコン --}}
+                                {!! Form::button('<i class="far fa-trash-alt"></i>', ['class' => 'btn btn-sm', 'type' => 'submit']) !!}
                             {!! Form::close() !!}
+                            </div>
                         @endif
                     </div>
                 </div>

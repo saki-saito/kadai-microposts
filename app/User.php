@@ -50,7 +50,7 @@ class User extends Authenticatable
      * このユーザーに関係するモデルの件数をロードする
      * ----------------------------------------------------------- */
     public function loadRelationshipCounts(){
-        $this->loadCount(['microposts', 'followings', 'followers']);
+        $this->loadCount(['microposts', 'followings', 'followers', 'favorites']);
     }
     
     /* ----------------------------------------------------------- *
@@ -155,5 +155,79 @@ class User extends Authenticatable
         
         // それらのユーザーが所有する投稿に絞り込む
         return Micropost::whereIn('user_id', $userIds);
+    }
+    
+    /* ----------------------------------------------------------- *
+     * このユーザーがお気に入り登録中のツイート（Micropostモデルとの関係を定義）
+     * ----------------------------------------------------------- */
+    public function favorites(){
+        /* --------------------------------------------------------------------------------------------- *
+         * belongsToMany()
+         * 第一引数：相手先モデル
+         * 第二引数：結合テーブル（中間テーブル）
+         * 第三引数：指定した相手先モデルが参照に利用しているこっちのカラム名
+         * 第四引数：指定した相手先モデル側がこの関数へ参照を持つために利用しているあっちのカラム名
+         * --------------------------------------------------------------------------------------------- */
+        return $this->belongsToMany(Micropost::class, 'favorites', 'user_id', 'micropost_id')->withTimestamps();
+    }
+    
+    /* ---------------------------------------------------- *
+     * $postIdで指定されたツイートをお気に入り登録する
+     * 
+     * @param   int $postId
+     * @return  bool
+     * ---------------------------------------------------- */
+    public function favorite($postId){
+        
+        // すでにお気に入り登録しているかの確認
+        $exist = $this->is_favorite($postId);
+        
+        // すでにお気に入り登録しているとき
+        if ($exist){
+            // 何もしない
+            return false;
+        }
+        // まだのとき
+        else {
+            // フォローする
+            $this->favorites()->attach($postId);
+            return true;
+        }
+    }
+    
+    /* ---------------------------------------------------- *
+     * $postIdで指定されたツイートをお気に入り登録から削除する
+     * 
+     * @param   int $postId
+     * @return  bool
+     * ---------------------------------------------------- */
+    public function unfavorite($postId){
+        
+        // お気に入り登録しているかの確認
+        $exist = $this->is_favorite($postId);
+        
+        // お気に入り登録していないとき
+        if (!$exist){
+            // 何もしない
+            return false;
+        }
+        // お気に入り登録しているとき
+        else {
+            // お気に入り登録削除する
+            $this->favorites()->detach($postId);
+            return true;
+        }
+    }
+    
+    /* ------------------------------------------------------------------- *
+     * 指定された$postIdのツイートをこのユーザーがお気に入り登録しているか調べる
+     * 
+     * @param   int $postId
+     * @return  bool    登録している：true
+     *                  登録していない：false
+     * ------------------------------------------------------------------- */
+    public function is_favorite($postId){
+        // お気に入り登録中のツイートのIDの中に$postIdが存在するか
+        return $this->favorites()->where('micropost_id', $postId)->exists();
     }
 }

@@ -1,0 +1,143 @@
+[34m  0[39m: exit
+[34m  1[39m: print_r($_ENV);
+[34m  2[39m: exit
+[34m  3[39m: DB::reconnect();
+[34m  4[39m: exit
+[34m  5[39m: App\Message::all()
+[34m  6[39m: $message = new App/Message
+[34m  7[39m: $message
+[34m  8[39m: $message = new App\Message
+[34m  9[39m: $message
+[34m 10[39m: $message -> content = 'hello'
+[34m 11[39m: $message
+[34m 12[39m: App\Message::all()
+[34m 13[39m: $message = new App\Message
+[34m 14[39m: $message -> content = 'sample1'
+[34m 15[39m: $message->save()
+[34m 16[39m: App\Message::all()
+[34m 17[39m: $message -> content = 'sample2'
+[34m 18[39m: $message->save()
+[34m 19[39m: App\Message::all()
+[34m 20[39m: $message -> content = 'hello'
+[34m 21[39m: $message->save()
+[34m 22[39m: App\Message::all()
+[34m 23[39m: histry
+[34m 24[39m: $message = new App\Message
+[34m 25[39m: $message -> content = 'sample1'
+[34m 26[39m: $message->save()
+[34m 27[39m: $message = new App\Message
+[34m 28[39m: $message -> content = 'sample2'
+[34m 29[39m: $message->save()
+[34m 30[39m: App\Message::all()
+[34m 31[39m: App\Message::first()
+[34m 32[39m: App\Message::find(1)
+[34m 33[39m: App\Message::find(2)
+[34m 34[39m: App\Message::where('content', 'sample1')->get()
+[34m 35[39m: App\Message::where('id', '>=', '2')->get()
+[34m 36[39m: App\Message::where('id', '>=', '2')->get()->first
+[34m 37[39m: App\Message::where('id', '>=', '2')->get()->first()
+[34m 38[39m: $message = App\Message::find(1)
+[34m 39[39m: $message -> content
+[34m 40[39m: $message -> content = 'updated'
+[34m 41[39m: $message->save()
+[34m 42[39m: $message = App\Message::find(1)
+[34m 43[39m: App\Message::destroy([1, 2])
+[34m 44[39m: App\Message::all()
+[34m 45[39m: $message = App\Message::find(3)
+[34m 46[39m: $message->delete()
+[34m 47[39m: App\Message::all()
+[34m 48[39m: \q
+[34m 49[39m: exit
+[34m 50[39m: App\Message::all();
+[34m 51[39m: $message = new App\Message
+[34m 52[39m: $message -> content = 'hello';
+[34m 53[39m: $message -> save();
+[34m 54[39m: App\Message::all();
+[34m 55[39m: exit
+[34m 56[39m: DB::reconnect();
+[34m 57[39m: exit
+[34m 58[39m: $task = new App\Task;
+[34m 59[39m: $task -> content = 'task1';
+[34m 60[39m: $task -> save();
+[34m 61[39m: $task = new App\Task;
+[34m 62[39m: $task -> content = 'task2';
+[34m 63[39m: $task -> save();
+[34m 64[39m: exit
+[34m 65[39m: DB::reconnect();
+[34m 66[39m: exit
+[34m 67[39m: use App\User
+[34m 68[39m: User::all()
+[34m 69[39m: User::create(['name' => 'test','email' => 'test@test.com','password' => Hash::make('test') ])
+[34m 70[39m: User::all()
+[34m 71[39m: exir
+[34m 72[39m: exit
+[34m 73[39m: user App\User
+[34m 74[39m: use App\User
+[34m 75[39m: $user = User::first()
+[34m 76[39m: $user->microposts()->get()
+[34m 77[39m: $user->microposts()->create(['content' => 'micropost test'])
+[34m 78[39m: $user->microposts()->get()
+[34m 79[39m: exir
+[34m 80[39m: exit
+[34m 81[39m: use App\User
+[34m 82[39m: $user = User::first()
+[34m 83[39m: $user->microposts()->get()
+[34m 84[39m: $user->microposts()->create(['content' => 'micropost test2'])
+[34m 85[39m: $user->microposts()->get()
+[34m 86[39m: exit
+[34m 87[39m: use App\User
+[34m 88[39m: User::all()
+[34m 89[39m: User::create(['name' => 'test','email' => 'test@test.com','password' => Hash::make('test') ])
+[34m 90[39m: exit
+[34m 91[39m: histry
+[34m 92[39m: use App\Task
+[34m 93[39m: $task = Task::all();
+[34m 94[39m: $task = Task::first();
+[34m 95[39m: $task->delete();
+[34m 96[39m: $task = Task::first();
+[34m 97[39m: $task->delete();
+[34m 98[39m: $task = Task::first();
+[34m 99[39m: $task->delete();
+[34m100[39m: $task = Task::first();
+[34m101[39m: $task->delete();
+[34m102[39m: $task = Task::first();
+[34m103[39m: $task->delete();
+[34m104[39m: $task = Task::first();
+[34m105[39m: $task = Task::all();
+[34m106[39m: exit
+[34m107[39m: use App\Task
+[34m108[39m: $task = Task::all();
+[34m109[39m: $task = Task::first();
+[34m110[39m: $task->delete();
+[34m111[39m: $task = Task::first();
+[34m112[39m: exit
+[34m113[39m: $tables = \DB::select('show tables');
+[34m114[39m: $columns = \Schema::getColumnListing('tasks');
+[34m115[39m: exit
+[34m116[39m: use App\User
+[34m117[39m: use App\Micropost
+[34m118[39m: $micropost = Micropost::all()
+[34m119[39m: exit
+[34m120[39m: use App\User
+[34m121[39m: $user = User::all();
+[34m122[39m: exit
+[34m123[39m: use App\User
+[34m124[39m: $user = new User;
+[34m125[39m: $user->name = 'test1';
+[34m126[39m: $user->email = 'test1@mail.com';
+[34m127[39m: $user->password = 'test1';
+[34m128[39m: $user->save();
+[34m129[39m: $user1 = User::find(1);
+[34m130[39m: $user1 = User::find(2);
+[34m131[39m: use App\User
+[34m132[39m: $user1 = User::find(1);
+[34m133[39m: $user2 = User::find(2);
+[34m134[39m: $user1->follow($user2->id);
+[34m135[39m: $user1->followings()->get()
+[34m136[39m: $user1->unfollow($user2->id);
+[34m137[39m: $user1->followings()->get()
+[34m138[39m: DB::table('information_schema.columns')->where('TABLE_NAME', 'テーブル名')->lists('TABLE_NAME');
+[34m139[39m: DB::table('information_schema.columns')->where('TABLE_NAME', 'microposts')->lists('TABLE_NAME');
+[34m140[39m: \DB::table('information_schema.columns')->where('TABLE_NAME', 'microposts')->lists('TABLE_NAME');
+[34m141[39m: $items = \DB::table('items')->get();
+[34m142[39m: $items = \DB::table('microposts')->get();
